@@ -4,5 +4,58 @@
         <name>Penguin.Cms.Core</name>
     </assembly>
     <members>
+        <member name="M:Penguin.Cms.Core.Extensions.IServiceProviderExtensions.GetRepositoryForType(System.IServiceProvider,System.Type)">
+            <summary>
+            Returns the most derived repository for the provided type
+            </summary>
+            <typeparam name="T">The repository implementation to provide</typeparam>
+            <param name="serviceProvider">The service provider source</param>
+            <param name="t">The type to get the repository for</param>
+            <returns>An instance of that repository from the service provider</returns>
+        </member>
+        <member name="M:Penguin.Cms.Core.Extensions.IServiceProviderExtensions.GetRepositoryForType``1(System.IServiceProvider,System.Type)">
+            <summary>
+            Returns the most derived repository for the provided type
+            </summary>
+            <typeparam name="T">The repository implementation to provide</typeparam>
+            <param name="serviceProvider">The service provider source</param>
+            <param name="t">The type to get the repository for</param>
+            <returns>An instance of that repository from the service provider</returns>
+        </member>
+        <member name="T:Penguin.Cms.Core.Interfaces.IGenerateDefaultEntities">
+            <summary>
+            Generates any kind of default object
+            </summary>
+        </member>
+        <member name="M:Penguin.Cms.Core.Interfaces.IGenerateDefaultEntities.Generate">
+            <summary>
+            Should return an IEnumerable with entities
+            </summary>
+            <returns>An IEnumerable with entities</returns>
+        </member>
+        <member name="T:Penguin.Cms.Core.Interfaces.IGenerateDefaultEntities`1">
+            <summary>
+            Generates default entities of a specifit type
+            </summary>
+            <typeparam name="T">The type this generator creates</typeparam>
+        </member>
+        <member name="M:Penguin.Cms.Core.Interfaces.IGenerateDefaultEntities`1.Generate">
+            <summary>
+            Returns an IEnumerable of generated entities
+            </summary>
+            <returns>An IEnumerable of generated entities</returns>
+        </member>
+        <member name="T:Penguin.Cms.Core.Objects.DefaultEntityGenerator`1">
+            <summary>
+            A base class for generating default entities of a type
+            </summary>
+            <typeparam name="T">The type of entity that this generator produces</typeparam>
+        </member>
+        <member name="M:Penguin.Cms.Core.Objects.DefaultEntityGenerator`1.Generate">
+            <summary>
+            Generate the entities
+            </summary>
+            <returns>The default entities</returns>
+        </member>
     </members>
 </doc>

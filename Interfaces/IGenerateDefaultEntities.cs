@@ -1,11 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Penguin.Cms.Core.Interfaces
 {
-    public interface IGenerateDefaultEntities<T>
+    /// <summary>
+    /// Generates any kind of default object
+    /// </summary>
+    public interface IGenerateDefaultEntities
     {
-        IEnumerable<T> Generate();
+        /// <summary>
+        /// Should return an IEnumerable with entities
+        /// </summary>
+        /// <returns>An IEnumerable with entities</returns>
+        IEnumerable Generate();
     }
 }

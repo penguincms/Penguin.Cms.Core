@@ -1,4 +1,5 @@
 ﻿using Penguin.Persistence.Abstractions.Interfaces;
+using Penguin.Persistence.Abstractions.Models.Base;
 using Penguin.Persistence.Repositories.Interfaces;
 using Penguin.Reflection;
 using System;
@@ -56,37 +57,62 @@ namespace Penguin.Cms.Core.Extensions
 
             if (!RepositoryTypes.TryGetValue(t, out Type RepositoryType))
             {
-                Type searchType = t;
 
-                List<Type> GenericRepositories = TypeFactory
-                                                .GetAllImplementations(typeof(T))
-                                                .Where(rt => rt.ContainsGenericParameters)
-                                                .Where(rt => rt.GetGenericArguments()[0].GetGenericParameterConstraints()[0].IsAssignableFrom(searchType))
-                                                .ToList();
+                List<Type> Implementations;
 
-                List<Type> Constraints = GenericRepositories.Select(rt => rt.GetGenericArguments()[0].GetGenericParameterConstraints()[0]).ToList();
-
-                Type MostDerivedConstraint = TypeFactory.GetMostDerivedType(Constraints, searchType);
-
-                GenericRepositories = GenericRepositories
-                                      .Where(rt => MostDerivedConstraint.IsAssignableFrom(rt.GetGenericArguments()[0].GetGenericParameterConstraints()[0]))
-                                      .Select(rt => rt.MakeGenericType(searchType))
-                                      .ToList();
-
-                Type DerivedRepositoryGeneric = TypeFactory.GetMostDerivedType(GenericRepositories, typeof(T));
-                do
+                if (t.IsGenericType)
                 {
-                    if (searchType is null)
+                    Implementations = TypeFactory.GetAllImplementations(typeof(T).MakeGenericType(t)).ToList();
+                }
+                else
+                {
+                    Implementations = TypeFactory.GetAllImplementations(typeof(IRepository<>).MakeGenericType(t)).Where(rt => typeof(T).IsAssignableFrom(rt)).ToList();
+                }
+
+                if (Implementations.Count == 1)
+                {
+                    RepositoryTypes.TryAdd(t, Implementations.Single());
+                    TypedRepository = (T)serviceProvider.GetService(Implementations.Single());
+                }
+                else if (Implementations.Count > 1)
+                {
+                    throw new Exception($"Multiple implementations found for repository type {typeof(T).MakeGenericType(t)}");
+                }
+                else
+                {
+
+                    Type searchType = t;
+
+                    List<Type> GenericRepositories = TypeFactory
+                                                    .GetAllImplementations(typeof(T))
+                                                    .Where(rt => rt.ContainsGenericParameters)
+                                                    .Where(rt => rt.GetGenericArguments()[0].GetGenericParameterConstraints()[0].IsAssignableFrom(searchType))
+                                                    .ToList();
+
+                    List<Type> Constraints = GenericRepositories.Select(rt => rt.GetGenericArguments()[0].GetGenericParameterConstraints()[0]).Distinct().ToList();
+
+                    Type MostDerivedConstraint = TypeFactory.GetMostDerivedType(Constraints, typeof(KeyedObject));
+
+                    GenericRepositories = GenericRepositories
+                                          .Where(rt => MostDerivedConstraint.IsAssignableFrom(rt.GetGenericArguments()[0].GetGenericParameterConstraints()[0]))
+                                          .Select(rt => rt.MakeGenericType(searchType))
+                                          .ToList();
+
+                    Type DerivedRepositoryGeneric = TypeFactory.GetMostDerivedType(GenericRepositories, typeof(T));
+                    do
                     {
-                        throw new NullReferenceException();
-                    }
+                        if (searchType is null)
+                        {
+                            throw new NullReferenceException();
+                        }
 
-                    TypedRepository = (T)serviceProvider.GetService(DerivedRepositoryGeneric);
+                        TypedRepository = (T)serviceProvider.GetService(DerivedRepositoryGeneric);
 
-                    searchType = searchType.BaseType;
-                } while (searchType != typeof(object) && TypedRepository == null);
+                        searchType = searchType.BaseType;
+                    } while (searchType != typeof(object) && TypedRepository == null);
 
-                RepositoryTypes.TryAdd(t, TypedRepository.GetType());
+                    RepositoryTypes.TryAdd(t, TypedRepository.GetType());
+                }
             }
             else
             {

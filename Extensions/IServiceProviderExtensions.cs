@@ -1,12 +1,10 @@
-﻿using Penguin.Persistence.Abstractions.Interfaces;
-using Penguin.Persistence.Abstractions.Models.Base;
-using Penguin.Persistence.Repositories.Interfaces;
+﻿using Penguin.Persistence.Abstractions;
+using Penguin.Persistence.Abstractions.Interfaces;
 using Penguin.Reflection;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Penguin.Cms.Core.Extensions
 {
@@ -57,7 +55,6 @@ namespace Penguin.Cms.Core.Extensions
 
             if (!RepositoryTypes.TryGetValue(t, out Type RepositoryType))
             {
-
                 List<Type> Implementations;
 
                 if (t.IsGenericType)
@@ -80,7 +77,6 @@ namespace Penguin.Cms.Core.Extensions
                 }
                 else
                 {
-
                     Type searchType = t;
 
                     List<Type> GenericRepositories = TypeFactory

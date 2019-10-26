@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Penguin.Cms.Core.Local</name>
+        <name>Penguin.Cms.Core</name>
     </assembly>
     <members>
         <member name="M:Penguin.Cms.Core.Extensions.IServiceProviderExtensions.GetRepositoryForType(System.IServiceProvider,System.Type)">

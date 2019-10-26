@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="Penguin.Projects.Shared\Penguin.Projects.Shared.csproj" />
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,8 +7,8 @@
     <Version>2.0.0</Version>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Cms.Abstractions" Version="1.0.0" />
-    <PackageReference Include="Penguin.Persistence.Abstractions" Version="3.0.1" />
     <PackageReference Include="Penguin.Reflection" Version="4.0.8" />
+    <PackageReference Include="Penguin.Cms.Abstractions" Version="1.0.0-63707652289" />
+    <PackageReference Include="Penguin.Persistence.Abstractions" Version="3.0.1-63707654129" />
   </ItemGroup>
 </Project>

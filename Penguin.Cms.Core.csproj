@@ -7,6 +7,7 @@
     <Version>2.0.0</Version>
     <AssemblyName>Penguin.Cms.Core</AssemblyName>
     <RootNamespace>Penguin.Cms.Core</RootNamespace>
+    <DocumentationFile>Penguin.Cms.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Penguin.Cms.Abstractions" Version="1.0.1-T9QC72V" />

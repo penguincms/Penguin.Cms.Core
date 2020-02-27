@@ -11,6 +11,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Penguin.Reflection" Version="4.0.9-T9RVMZA" />
-    <PackageReference Include="Penguin.Cms.Abstractions" Version="1.0.1-T9RVMZA" />
+    <PackageReference Include="Penguin.Cms.Abstractions" Version="1.0.1-T9SAD4U" />
   </ItemGroup>
 </Project>

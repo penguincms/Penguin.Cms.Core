@@ -13,14 +13,14 @@ namespace Penguin.Cms.Core.Services
 
         public ComponentService(IServiceProvider serviceProvider)
         {
-            ServiceProvider = serviceProvider;
+            this.ServiceProvider = serviceProvider;
         }
 
         public IEnumerable<TReturn> GetComponents<TReturn, TParameter>(TParameter Id)
         {
             foreach (Type t in TypeFactory.GetAllImplementations<IProvideComponents<TReturn, TParameter>>())
             {
-                if ((ServiceProvider.GetService(t) ?? Activator.CreateInstance(t)) is IProvideComponents<TReturn, TParameter> provider)
+                if ((this.ServiceProvider.GetService(t) ?? Activator.CreateInstance(t)) is IProvideComponents<TReturn, TParameter> provider)
                 {
                     foreach (TReturn o in provider.GetComponents(Id).OfType<TReturn>())
                     {
@@ -34,7 +34,7 @@ namespace Penguin.Cms.Core.Services
         {
             foreach (Type t in TypeFactory.GetAllImplementations<IProvideComponents<TReturn>>())
             {
-                if ((ServiceProvider.GetService(t) ?? Activator.CreateInstance(t)) is IProvideComponents<TReturn> provider)
+                if ((this.ServiceProvider.GetService(t) ?? Activator.CreateInstance(t)) is IProvideComponents<TReturn> provider)
                 {
                     foreach (TReturn o in provider.GetComponents().OfType<TReturn>())
                     {

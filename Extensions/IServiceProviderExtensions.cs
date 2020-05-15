@@ -18,7 +18,6 @@ namespace Penguin.Cms.Core.Extensions
         /// <summary>
         /// Returns the most derived repository for the provided type
         /// </summary>
-        /// <typeparam name="T">The repository implementation to provide</typeparam>
         /// <param name="serviceProvider">The service provider source</param>
         /// <param name="t">The type to get the repository for</param>
         /// <returns>An instance of that repository from the service provider</returns>

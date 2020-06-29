@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageProjectUrl>https://github.com/penguincms/Penguin.Cms.Core</PackageProjectUrl>
     <Description>Objects an interfaces required for integration into the PenguinCms</Description>
-    <Version>2.0.0</Version>
+    <Version>5.0.0</Version>
     <AssemblyName>Penguin.Cms.Core</AssemblyName>
     <RootNamespace>Penguin.Cms.Core</RootNamespace>
     <DocumentationFile>Penguin.Cms.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Reflection" Version="4.0.9-T9XYC7H" />
-    <PackageReference Include="Penguin.Cms.Abstractions" Version="1.0.1-T9XYC7H" />
+    <PackageReference Include="Penguin.Reflection" Version="5.0.0" />
+    <PackageReference Include="Penguin.Cms.Abstractions" Version="5.0.0" />
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@
     <DocumentationFile>Penguin.Cms.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Cms.Abstractions" Version="5.0.2-TA9KKLU" />
     <PackageReference Include="Penguin.Reflection" Version="5.0.2-TA9KKLU" />
+    <PackageReference Include="Penguin.Cms.Abstractions" Version="5.0.2-TAA4YFP" />
   </ItemGroup>
 </Project>

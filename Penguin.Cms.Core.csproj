@@ -2,7 +2,7 @@
   <Import Project="Penguin.Projects.Shared\Penguin.Projects.Shared.csproj" />
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageProjectUrl>https://github.com/penguincms/Penguin.Cms.Core</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/PenguinCMS/Penguin.Cms.Core</PackageProjectUrl>
     <Description>Objects an interfaces required for integration into the PenguinCms</Description>
     <Version>5.0.5</Version>
     <AssemblyName>Penguin.Cms.Core</AssemblyName>
@@ -10,7 +10,7 @@
     <DocumentationFile>Penguin.Cms.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Reflection" Version="5.0.4" />
-    <PackageReference Include="Penguin.Cms.Abstractions" Version="5.0.6-TAEO1KM" />
+    <PackageReference Include="Penguin.Cms.Abstractions" Version="5.0.6-TAHULSY" />
+    <PackageReference Include="Penguin.Reflection" Version="5.0.6-TAHULSY" />
   </ItemGroup>
 </Project>

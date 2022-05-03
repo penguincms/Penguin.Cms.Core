@@ -2,7 +2,7 @@
   <Import Project="Penguin.Projects.Shared\Penguin.Projects.Shared.csproj" />
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
-    <PackageProjectUrl>https://github.com/PenguinCMS/Penguin.Cms.Core</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/PenguinCms/Penguin.Cms.Core</PackageProjectUrl>
     <Description>Objects an interfaces required for integration into the PenguinCms</Description>
     <Version>5.0.5</Version>
     <AssemblyName>Penguin.Cms.Core</AssemblyName>

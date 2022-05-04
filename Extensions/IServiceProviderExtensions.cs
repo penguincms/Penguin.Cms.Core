@@ -67,7 +67,7 @@ namespace Penguin.Cms.Core.Extensions
 
                 if (Implementations.Count == 1)
                 {
-                    RepositoryTypes.TryAdd(t, Implementations.Single());
+                    _ = RepositoryTypes.TryAdd(t, Implementations.Single());
                     TypedRepository = (T)serviceProvider.GetService(Implementations.Single());
                 }
                 else if (Implementations.Count > 1)
@@ -106,7 +106,7 @@ namespace Penguin.Cms.Core.Extensions
                         searchType = searchType.BaseType;
                     } while (searchType != typeof(object) && TypedRepository == null);
 
-                    RepositoryTypes.TryAdd(t, TypedRepository.GetType());
+                    _ = RepositoryTypes.TryAdd(t, TypedRepository.GetType());
                 }
             }
             else

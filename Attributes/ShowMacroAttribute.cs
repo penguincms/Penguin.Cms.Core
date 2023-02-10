@@ -3,7 +3,7 @@
 namespace Penguin.Cms.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class ShowMacroAttribute : Attribute
+    public sealed class ShowMacroAttribute : Attribute
     {
     }
 }

@@ -13,7 +13,7 @@ namespace Penguin.Cms.Core.Extensions
     public static class IServiceProviderExtensions
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     {
-        private static readonly ConcurrentDictionary<Type, Type> RepositoryTypes = new ConcurrentDictionary<Type, Type>();
+        private static readonly ConcurrentDictionary<Type, Type> RepositoryTypes = new();
 
         /// <summary>
         /// Returns the most derived repository for the provided type
@@ -23,12 +23,9 @@ namespace Penguin.Cms.Core.Extensions
         /// <returns>An instance of that repository from the service provider</returns>
         public static IRepository GetRepositoryForType(this IServiceProvider serviceProvider, Type t)
         {
-            if (serviceProvider is null)
-            {
-                throw new ArgumentNullException(nameof(serviceProvider));
-            }
-
-            return serviceProvider.GetRepositoryForType<IRepository>(t);
+            return serviceProvider is null
+                ? throw new ArgumentNullException(nameof(serviceProvider))
+                : serviceProvider.GetRepositoryForType<IRepository>(t);
         }
 
         /// <summary>
@@ -54,17 +51,9 @@ namespace Penguin.Cms.Core.Extensions
 
             if (!RepositoryTypes.TryGetValue(t, out Type RepositoryType))
             {
-                List<Type> Implementations;
-
-                if (t.IsGenericType)
-                {
-                    Implementations = TypeFactory.GetAllImplementations(typeof(T).MakeGenericType(t)).ToList();
-                }
-                else
-                {
-                    Implementations = TypeFactory.GetAllImplementations(typeof(IRepository<>).MakeGenericType(t)).Where(rt => typeof(T).IsAssignableFrom(rt)).ToList();
-                }
-
+                List<Type> Implementations = t.IsGenericType
+                    ? TypeFactory.GetAllImplementations(typeof(T).MakeGenericType(t)).ToList()
+                    : TypeFactory.GetAllImplementations(typeof(IRepository<>).MakeGenericType(t)).Where(rt => typeof(T).IsAssignableFrom(rt)).ToList();
                 if (Implementations.Count == 1)
                 {
                     _ = RepositoryTypes.TryAdd(t, Implementations.Single());

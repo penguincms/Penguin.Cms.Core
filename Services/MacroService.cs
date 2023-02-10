@@ -12,24 +12,24 @@ namespace Penguin.Cms.Core.Services
 
         public MacroService(IServiceProvider serviceProvider)
         {
-            this.ServiceProvider = serviceProvider;
+            ServiceProvider = serviceProvider;
         }
 
         public List<Macro> GetMacros(object requester)
         {
-            List<IMacroProvider> MacroHandlers = new List<IMacroProvider>();
+            List<IMacroProvider> MacroHandlers = new();
 
             IEnumerable<Type> MacroHandlerTypes = TypeFactory.GetAllImplementations(typeof(IMacroProvider));
 
             foreach (Type thisHandlerType in MacroHandlerTypes)
             {
-                if (this.ServiceProvider.GetService(thisHandlerType) is IMacroProvider m)
+                if (ServiceProvider.GetService(thisHandlerType) is IMacroProvider m)
                 {
                     MacroHandlers.Add(m);
                 }
             }
 
-            List<Macro> toReturn = new List<Macro>();
+            List<Macro> toReturn = new();
 
             foreach (IMacroProvider thisHandler in MacroHandlers)
             {

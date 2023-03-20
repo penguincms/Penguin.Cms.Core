@@ -1,4 +1,5 @@
-﻿using Penguin.Cms.Abstractions.Interfaces;
+﻿using Loxifi;
+using Penguin.Cms.Abstractions.Interfaces;
 using Penguin.DependencyInjection.Abstractions.Interfaces;
 using Penguin.Reflection;
 using System;

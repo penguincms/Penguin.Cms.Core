@@ -20,7 +20,7 @@ namespace Penguin.Cms.Core.Services
         {
             List<IMacroProvider> MacroHandlers = new();
 
-            IEnumerable<Type> MacroHandlerTypes = TypeFactory.GetAllImplementations(typeof(IMacroProvider));
+            IEnumerable<Type> MacroHandlerTypes = TypeFactory.Default.GetAllImplementations(typeof(IMacroProvider));
 
             foreach (Type thisHandlerType in MacroHandlerTypes)
             {

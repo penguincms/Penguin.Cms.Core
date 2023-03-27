@@ -19,7 +19,7 @@ namespace Penguin.Cms.Core.Services
 
         public IEnumerable<TReturn> GetComponents<TReturn, TParameter>(TParameter Id)
         {
-            foreach (Type t in TypeFactory.GetAllImplementations<IProvideComponents<TReturn, TParameter>>())
+            foreach (Type t in TypeFactory.Default.GetAllImplementations<IProvideComponents<TReturn, TParameter>>())
             {
                 if ((ServiceProvider.GetService(t) ?? Activator.CreateInstance(t)) is IProvideComponents<TReturn, TParameter> provider)
                 {
@@ -33,7 +33,7 @@ namespace Penguin.Cms.Core.Services
 
         public IEnumerable<TReturn> GetComponents<TReturn>()
         {
-            foreach (Type t in TypeFactory.GetAllImplementations<IProvideComponents<TReturn>>())
+            foreach (Type t in TypeFactory.Default.GetAllImplementations<IProvideComponents<TReturn>>())
             {
                 if ((ServiceProvider.GetService(t) ?? Activator.CreateInstance(t)) is IProvideComponents<TReturn> provider)
                 {
